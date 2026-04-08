@@ -1,6 +1,7 @@
 [Challenge link](https://www.root-me.org/en/Challenges/Cracking/PE-DotNet-Basic-Crackme)
 
 first use dnSpy to read Main function to understand logic and we will see sth like that 
+
 <img width="915" height="272" alt="image" src="https://github.com/user-attachments/assets/15ef8696-d160-4c58-9cf1-d8f564adf6a1" />
 
 <img width="1765" height="1260" alt="image" src="https://github.com/user-attachments/assets/bb0b2813-8d78-4b3c-ab3b-3349e148efff" />
