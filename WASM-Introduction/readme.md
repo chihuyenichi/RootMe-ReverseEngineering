@@ -173,6 +173,19 @@ loop L_c {
     if (p == 0) break;
     q = d[29]
     r = q[2752]
-    s = 255 
+    s = 255
+    t = r & s
+    u = d[31] = e
+    v = d[29] 
+    w = 10
+    x = v % 10
+    y = u + x
+    z = y[0]
+    da = t ^ z // t = q[2752][i], z = d[31][v % 10]
+    ea = d[29]
+    ea[2752] = da
+    d[29] += 1
+    continue L_c;
 }
 ```
+it is xor of data at 2752 and our decrypted data 
