@@ -189,3 +189,15 @@ loop L_c {
 }
 ```
 it is xor of data at 2752 and our decrypted data 
+* notice that the data at offset 2704 are all char type
+so we have code to get flag :
+```
+res = [0] * 17
+data_at_2752 = "5 1,(\067\09\06\14N3\0b\06\09\01M"
+inp_data = "babaaurhum"
+for i in range(17):
+    res[i] = ord(inp_data[i % 10]) ^ ord(data_at_2752[i])
+print("".join([chr(x) for x in res].decode('utf-8')))
+```
+-> Flag is : 
+## WASMIsEasy,Right?
