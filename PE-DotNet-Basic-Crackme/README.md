@@ -6,14 +6,15 @@ first use dnSpy to read Main function to understand logic and we will see sth li
 
 <img width="1765" height="1260" alt="image" src="https://github.com/user-attachments/assets/bb0b2813-8d78-4b3c-ab3b-3349e148efff" />
 
-```
+
 it means that is a while loop, in each loop 
-    - read itself as byte data
-    - split into 2 parts, one is encrypted text and another is key, if cannot split, break the loop 
-    - decode the encrypted text with key and it will make a file .exe with this decoded text 
-    - if this file can run, repeat our actions
-```
+- read itself as byte data
+- split into 2 parts, one is encrypted text and another is key, if cannot split, break the loop
+- decode the encrypted text with key and it will make a file .exe with this decoded text
+- if this file can run, repeat our actions
+
 then in the last file made, we use dnSpy again to read file
+the code illustrate above instructions in same folder
 
 <img width="1614" height="302" alt="image" src="https://github.com/user-attachments/assets/8ddec7db-31af-45a6-8dd4-5aa7342ce3da" />
 
