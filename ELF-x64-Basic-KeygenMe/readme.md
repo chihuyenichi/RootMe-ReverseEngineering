@@ -1,7 +1,9 @@
 use `objdump -d -M intel -S ctf-name > ctf-name.txt` to get assembly code 
 
 this is the hint 
+
 Find the serial for the "root-me.org" user.
+
 The validation password is the serial’s sha256 hash.
 
 read the asm code of file, we saw 
