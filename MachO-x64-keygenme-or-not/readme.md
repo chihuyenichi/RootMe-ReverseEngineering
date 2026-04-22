@@ -2,11 +2,12 @@
 (base) root@chihuyenich:/mnt/c/daohuyenchi_server/CTF_downloads/rootme/reverse/MachO-x64-keygenme-or-not/ch26-unzip-folder# file macho
 macho: Mach-O 64-bit x86_64 executable, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|PIE>
 ```
-first, use ida to read the pseudocode of this file<br>
+opening the binary in IDA, we examine the main function's pseudocode<br>
 
 <img width="1231" height="845" alt="ảnh" src="https://github.com/user-attachments/assets/458074fe-3817-4d24-a6ab-485a4100dc42" />
 
-we see that it have a check function is "auth", so we should analyze it 
+the program takes user input and passes it to an auth function<br>
+if auth returns 0, the program enters an else block that appears to decrypt and print the flag 
 
 ```
 __int64 __fastcall auth(__int64 a1, int a2, const char *a3)
@@ -37,8 +38,8 @@ __int64 __fastcall auth(__int64 a1, int a2, const char *a3)
   return v8;
 }
 ```
-this function will check we use anything to debug<br>then it will check parameter a2 with 6235464, i call this is key<br> 
-back to the main function, goto the else block when auth function return 0 
+this function contains 2 parts: debug checking and loop for check value<br>
+we see that, for the auth return 0, the parameter a2 only need to be equal to 6235464
 
 <img width="732" height="426" alt="ảnh" src="https://github.com/user-attachments/assets/2d8311b5-35d6-41de-b8df-a751c53afe0d" />
 
