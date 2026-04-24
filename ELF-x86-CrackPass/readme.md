@@ -88,4 +88,11 @@ with open("payload", "wb") as file:
 
 because our input need to be equal to s1, s1 is our answer(the flag that we need) 
 
+```
+./Crack $(cat payload)
+Good work, the password is : 
+
+ff07031d6fb052490149f44b1d5e94f1592b6bac93c06ca9
+```
+
 
