@@ -1,12 +1,12 @@
-first use binwalk to extract file 
+First, use binwalk to extract the file.
 
 <img width="2211" height="581" alt="image" src="https://github.com/user-attachments/assets/1c57d826-d812-47bc-8e52-0d3ba22d3a60" />
 
-find the file with extension is .gd, because .gd file is plaintext so we can easily read them 
+Find files with the `.gd` extension. Since `.gd` files are plaintext, we can read them easily.
 
 <img width="1445" height="504" alt="image" src="https://github.com/user-attachments/assets/e3c37037-6f89-40db-9263-8f6107f3bb8d" />
 
-read the FlagLabel.gd
+Read `FlagLabel.gd`:
 
 ```
 extends Label
@@ -24,4 +24,4 @@ func _ready():
 	text = "nothing to see\nhere!"
 ```
 
-therefore, we can find the flag 
+Therefore, we can decode the flag by subtracting the key from the encrypted array. 

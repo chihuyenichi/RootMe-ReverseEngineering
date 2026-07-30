@@ -1,5 +1,5 @@
-extract the .exe file 
-goto /res/scenes/FlagLabel.cs 
+Extract the .exe file and go to `/res/scenes/FlagLabel.cs`:
+
 ```
 using Godot;
 
@@ -26,4 +26,5 @@ public class FlagLabel : Label
 	}
 }
 ```
-we need to write them in utf-8
+
+Convert the integers to UTF-8 characters to get the flag.

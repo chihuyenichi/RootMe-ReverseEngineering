@@ -2,16 +2,17 @@
 Crack: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.8, stripped
 ```
 
-use ida to read the decompiled code of the binary, we will go to the main function 
+Use IDA to read the decompiled code. The main function:
+
 ```
 int __cdecl main(int a1, char **a2)
 {
-  if ( ptrace(PTRACE_TRACEME, 0, 1, 0) < 0 )
+  if (ptrace(PTRACE_TRACEME, 0, 1, 0) < 0)
   {
     puts("Don't use a debuguer !");
     abort();
   }
-  if ( a1 != 2 )
+  if (a1 != 2)
   {
     puts("You must give a password for use this program !");
     abort();
@@ -20,14 +21,14 @@ int __cdecl main(int a1, char **a2)
   return 0;
 }
 ```
-when we put a string as a parameter, we will goto `printRightPass`<br> 
+
+When we pass a string as a parameter, it calls `printRightPass`.
 
 <img width="641" height="647" alt="image" src="https://github.com/user-attachments/assets/e329e6c0-91c8-4f26-8b06-d1f19904d46b" />
 
-the important part is the modify_xor function, it will change the s1 string<br>
-while s2 is copy of our input, it will be compared to s1<br>
-i will write a python code to illustrating the modify_xor function to get value of s1 (the parameter in it is constant ("THEPASSWORDISEASYTOCRACK"))
-```
+The important part is the `modify_xor` function — it transforms the `s1` string. Meanwhile, `s2` (our input) is compared to `s1`. We can simulate `modify_xor` in Python to recover the expected value of `s1`:
+
+```python
 def modify_xor(p):
     p = [ord(c) for c in p]
 
@@ -71,7 +72,7 @@ def modify_xor(p):
     i = 0
     result = p[0]
     while result & 0xFF:
-        s += f"{result:02x}"  # Fix 1: restored :02x format specifier
+        s += f"{result:02x}"
         i += 1
         result = p[i]
 
@@ -79,18 +80,17 @@ def modify_xor(p):
 
 
 needed_input = modify_xor("THEPASSWORDISEASYTOCRACK\0")
-
 print(needed_input)
 
 with open("payload", "wb") as file:
-    file.write(needed_input.encode())  # Fix 2: encode string to bytes for binary write
+    file.write(needed_input.encode())
 ```
 
-because our input need to be equal to s1, s1 is our answer(the flag that we need) 
+Since our input must equal `s1`, the result is the flag:
 
 ```
 ./Crack $(cat payload)
-Good work, the password is : 
+Good work, the password is :
 
 ff07031d6fb052490149f44b1d5e94f1592b6bac93c06ca9
 ```

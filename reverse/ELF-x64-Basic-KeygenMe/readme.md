@@ -1,12 +1,10 @@
-use `objdump -d -M intel -S ctf-name > ctf-name.txt` to get assembly code 
+Use `objdump -d -M intel -S ctf-name > ctf-name.txt` to get the assembly code.
 
-this is the hint 
+**Hint:**  
+Find the serial for the "root-me.org" user. The validation password is the serial's SHA256 hash.
 
-Find the serial for the "root-me.org" user.
+Reading the assembly:
 
-The validation password is the serial’s sha256 hash.
-
-read the asm code of file, we saw 
 ```
    0x4001a5:    mov    eax,0x0
    0x4001aa:    mov    edi,0x0
@@ -14,7 +12,8 @@ read the asm code of file, we saw
    0x4001b9:    mov    edx,0x20
    0x4001be:    syscall
 ```
-it will get 0x20 bytes from stdin and push it into 0x600260 
+
+This reads 0x20 bytes from stdin into address `0x600260` (the login input).
 
 ```
    0x4001c0:    mov    eax,0x2
@@ -29,10 +28,10 @@ it will get 0x20 bytes from stdin and push it into 0x600260
    0x4001e5:    movabs rsi,0x600280
    0x4001ef:    mov    edx,0x20
 ```
-and this will read 0x20 bytes from 0x40012e and push it into 0x600280 
-this data is ".m.key" and it's the key we need 
 
-the data that is from stdin is the login -> and with the hint, it will be "root-me.org"
+This reads 0x20 bytes from the file at offset `0x40012e` (which is `.m.key`) into `0x600280`. This is the key we need.
+
+The data from stdin is the login — according to the hint, it is `root-me.org`.
 
 ```
    0x400161:    cmp    rcx,rbx
@@ -48,8 +47,6 @@ the data that is from stdin is the login -> and with the hint, it will be "root-
    0x400179:    jmp    0x400161
 ```
 
--> we can have data key is key[i] = login[i] - i + 0x14
+From this loop: `key[i] = login[i] - i + 0x14`
 
-then we only use sha256 to encrypt the key 
-
-	
+Then compute the SHA256 hash of the key to get the serial.

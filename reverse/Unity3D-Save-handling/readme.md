@@ -1,2 +1,2 @@
-- use **_de4dot_** to deobfuscated the Managed/AssemblySharp.dll (this file contain the logic of exe file)
-- then use **_dnSpy_** to read MonoBehavior
+- Use **de4dot** to deobfuscate `Managed/AssemblySharp.dll` (this file contains the logic of the .exe)
+- Then use **dnSpy** to read the `MonoBehavior` classes

@@ -1,13 +1,12 @@
-undecompyle6 is tool that can decompile .pyc to python source code 
+`uncompyle6` is a tool that can decompile `.pyc` files to Python source code.
 
 ```
-(base) root@chihuyenich:/mnt/c/daohuyenchi_server/CTF_downloads/rootme/reverse/PYC-ByteCode# uncompyle6 ch19.pyc > 1.py
-(base) root@chihuyenich:/mnt/c/daohuyenchi_server/CTF_downloads/rootme/reverse/PYC-ByteCode# ls
-1.py  ch19.pyc  exploit.py
+uncompyle6 ch19.pyc > 1.py
 ```
 
-read the 1.py 
-```
+Read the decompiled output (`1.py`):
+
+```python
 # uncompyle6 version 3.9.3
 # Python bytecode version base 3.1 (3151)
 # Decompiled from: Python 3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]
@@ -28,12 +27,10 @@ if __name__ == "__main__":
         print("You Win")
     else:
         print("Try Again !")
-
-# okay decompiling ch19.pyc
 ```
 
-if we want "You Win", we need find the suitable PASS
+To get `"You Win"`, we need to find the correct `PASS` that produces `SOLUCE`.
 
-and this is the solution code for finding flag 
+The solution code for finding the flag:
 
 <img width="967" height="631" alt="image" src="https://github.com/user-attachments/assets/67cb3768-046d-4e64-a783-37b855b86418" />
